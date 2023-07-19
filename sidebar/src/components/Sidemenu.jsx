@@ -26,7 +26,7 @@ const Sidemenu = () => {
                 {
                     list.map((text) => {
                         return (
-                            <li className='font-semibold text-sm'>{text.toUpperCase()}</li>
+                            <li className='font-semibold text-sm hover:scale-125 transition-all ease-linear'>{text.toUpperCase()}</li>
                             )
                             })
                         }

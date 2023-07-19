@@ -25,7 +25,7 @@ const App = () => {
       <header className='bg-slate-200 h-screen '>
         <AppContext.Provider value={{list, isMenuOpen, handleMenuOpen, isModalOpen ,handleModalOpen}}>
           <Navbar />
-          <button onClick={handleModalOpen} className='text-xs px-5 py-1 rounded-full shadow-xl font-semibold position absolute top-1/2 right-1/2 translate-x-1/2 translate-y-1/2 bg-cyan-100'>APRI MODAL</button>
+          <button onClick={handleModalOpen} className='text-xs px-5 py-1 rounded-full shadow-xl font-semibold position absolute top-1/2 right-1/2 translate-x-1/2 translate-y-1/2 bg-cyan-100 hover:scale-125 transition-all ease hover:bg-cyan-400 hover:text-white active:bg-cyan-200 active:text-black'>APRI MODAL</button>
           <Sidemenu />
           <Modal />
       </AppContext.Provider>

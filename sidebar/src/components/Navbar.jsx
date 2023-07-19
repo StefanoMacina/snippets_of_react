@@ -19,7 +19,7 @@ const Navbar = () => {
                 {
                     list.map((el) => {
                         return(
-                            <li>{el.toUpperCase()}</li>
+                            <li className='hover:scale-110 transition-all ease'>{el.toUpperCase()}</li>
                         )
                     })
                 }
