@@ -1,6 +1,6 @@
 import React from 'react'
 import cartsvg from '../assets/cart.svg'
-import { IoIosCart} from "react-icons/io";
+
 
 const Navbar = () => {
   return (

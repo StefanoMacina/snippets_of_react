@@ -1,13 +1,15 @@
 import React from 'react'
 import Navbar from './components/Navbar'
+import CartItem from './components/CartItem'
 import Cart from './components/Cart'
-import Product from './components/Product'
+
 
 const App = () => {
   return (
     <div>
       <Navbar />
-      <Cart/>
+      <CartItem/>
+      <Cart />
     </div>
   )
 }

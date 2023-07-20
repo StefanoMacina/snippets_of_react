@@ -1,5 +1,4 @@
 import React from 'react'
-import deleteProduct from '../assets/deleteProduct.svg'
 import { IoIosAddCircle, IoIosAddCircleOutline, IoIosCart  } from 'react-icons/io'
 import { MdDelete } from 'react-icons/md';
 
@@ -8,7 +7,7 @@ import { MdDelete } from 'react-icons/md';
 const Product = ({id, name, img, price}) => {
   return (
     <article className='grid grid-cols-5 mt-5'>
-        <div className=''>
+        <div>
             <div className='rounded-md shadow-lg'>
                 <img src={img} alt="" className='p-1 rounded-lg'/>
             </div>
@@ -24,7 +23,7 @@ const Product = ({id, name, img, price}) => {
         <div className='flex justify-center items-center'>
             <p className='text-xs md:text-base lg:text-xl'>€ {price}</p>
         </div>
-        <div className='flex justify-center items-center text-red-500'>
+        <div className='flex justify-center items-center text-red-500 lg:text-3xl'>
         <MdDelete/>
         </div>
     </article>
