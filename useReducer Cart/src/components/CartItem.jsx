@@ -1,9 +1,13 @@
 import React from "react";
-import data from "../../cartData";
 import Product from "./Product";
 import { MdRemoveShoppingCart } from 'react-icons/md'
+import { useGlobalContext } from "../context/context";
+import { DELETE_ALL_ITEMS } from "../context/action";
+
 
 const CartItem = () => {
+
+    const {deleteAllitems, products} = useGlobalContext()
 
   return (
     <section>
@@ -14,18 +18,20 @@ const CartItem = () => {
                 <div>Qty</div>
                 <div>Price</div>
                 <div className="text-red-600">
-                <MdRemoveShoppingCart/>
+                <button onClick={deleteAllitems}  className="active:scale-110">
+               <MdRemoveShoppingCart/>
+                </button>
                 </div>
             </header>
             <hr className="mt-2"/>
         </div>
         <main className="mx-5 md:mx-24">
             {
-                data.map((el) => {
+                products.map((el) => {
                     
                     return (
                        
-                        <Product key={el.id} {...el}/>
+                        <Product key={el._id} {...el}/>
                        
                     )
                 })
