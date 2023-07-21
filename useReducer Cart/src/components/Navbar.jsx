@@ -15,9 +15,7 @@ const Navbar = () => {
             <div  className=' flex'>
                 <img  src={cartsvg} alt="" width={26} />
                
-                <div className='w-4 h-4 bg-amber-200 rounded-full text-center text-xs'>
-                    {itemCounter}
-                </div>
+                { itemCounter > 0 && <div className='w-4 h-4 bg-amber-200 rounded-full text-center text-xs'>{itemCounter}</div>}
             </div>
         </section>
     </nav>
