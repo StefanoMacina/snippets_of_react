@@ -6,7 +6,7 @@ import formatNumber from "../utils/formatNumber";
 
 const Cart = () => {
 
-  const {products, total} = useGlobalContext()
+  const {total} = useGlobalContext()
   
   return (
     <section className=" my-10 flex justify-center lg:justify-end lg:mr-10">

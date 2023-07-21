@@ -7,6 +7,7 @@ import {
   DELETE_ITEM,
   DECREASE_QTY,
   TOTAL_AMOUNT,
+  TOTAL_ITEMS,
 } from "./action";
 
 function reducer(state, { type, payload }) {
@@ -75,6 +76,13 @@ function reducer(state, { type, payload }) {
           return acc + item.price * item.qty 
         }, 0)
       }
+    case TOTAL_ITEMS : 
+    return {
+      ...state,
+      itemCounter : state.products.reduce((acc, item) => {
+        return acc + item.qty
+      }, 0)
+    }
   }
   return state;
 }

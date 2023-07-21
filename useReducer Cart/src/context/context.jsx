@@ -2,7 +2,7 @@ import { createContext, useContext, useEffect, useReducer } from "react";
 import  reducer  from './reducer'
 const url = 'https://react-corso-api.netlify.app/.netlify/functions/cartshop'
 import  axios  from "axios";
-import { DATA_FETCHING_FAILED, DATA_FETCHING_STARTED, DATA_FETCHING_SUCCESS, DECREASE_QTY, DELETE_ALL_ITEMS, DELETE_ITEM, INCREASE_QTY, TOTAL_AMOUNT } from "./action";
+import { DATA_FETCHING_FAILED, DATA_FETCHING_STARTED, DATA_FETCHING_SUCCESS, DECREASE_QTY, DELETE_ALL_ITEMS, DELETE_ITEM, INCREASE_QTY, TOTAL_AMOUNT, TOTAL_ITEMS } from "./action";
 
 const initialState = {
   products: [],
@@ -37,9 +37,10 @@ const AppProvider = ({ children }) => {
     dispatch({type : DECREASE_QTY, payload: _id})
   }
 
+
   useEffect(() => {
     dispatch({ type : TOTAL_AMOUNT})
-    console.log(state.total);
+    dispatch({ type : TOTAL_ITEMS})
   },[state.products])
 
   useEffect(() => {

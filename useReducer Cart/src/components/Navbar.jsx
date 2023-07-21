@@ -4,7 +4,7 @@ import { useGlobalContext } from '../context/context'
 
 
 const Navbar = () => {
-    const {products} = useGlobalContext()
+    const {products, itemCounter} = useGlobalContext()
     
   return (
     <nav className='bg-cyan-600 h-20 sticky top-0 shadow-xl z-10'>
@@ -16,7 +16,7 @@ const Navbar = () => {
                 <img  src={cartsvg} alt="" width={26} />
                
                 <div className='w-4 h-4 bg-amber-200 rounded-full text-center text-xs'>
-                    {products.length}
+                    {itemCounter}
                 </div>
             </div>
         </section>
