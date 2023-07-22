@@ -1,4 +1,4 @@
-import { ADD_TODO, FETCH_TODOS_SUCCESS } from "./action"
+import { ADD_TODO, COUNT_TODO, FETCH_TODOS_SUCCESS } from "./action"
 
  const reducer = (state, {type, payload}) => {
     switch (type){
@@ -12,6 +12,11 @@ import { ADD_TODO, FETCH_TODOS_SUCCESS } from "./action"
             return {
                 ...state,
                 todoList : []
+            }
+        case COUNT_TODO : 
+            return {
+                ...state,
+                todoCount : state.todoList.length
             }
     }
     return state

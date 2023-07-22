@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
 import reducer from './reducer'
 import axios from "axios";
-import { ADD_TODO, FETCH_TODOS_SUCCESS } from "./action";
+import { ADD_TODO, COUNT_TODO, FETCH_TODOS_SUCCESS } from "./action";
 
 const todosUrl = 'https://jsonplaceholder.typicode.com/todos'
 
@@ -23,7 +23,7 @@ const AppProvider = ({ children }) => {
             const response = await axios.get(todosUrl)
             const data =  response.data.slice(0,4)
            dispatch({type : FETCH_TODOS_SUCCESS ,  payload : data})
-            
+            dispatch({type : COUNT_TODO})
         } catch (error) {
             console.log(error);
         }
@@ -31,6 +31,8 @@ const AppProvider = ({ children }) => {
 
   },[])
   
+
+
   const addTodo = (e) => {
     e.preventDefault()
     dispatch({type : ADD_TODO})

@@ -1,2 +1,3 @@
 export const FETCH_TODOS_SUCCESS = 'FETCH_TODOS_SUCCESS'
 export const ADD_TODO = 'ADD_TODO'
+export const COUNT_TODO = 'COUNT_TODOS'
