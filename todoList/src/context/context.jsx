@@ -22,8 +22,7 @@ const AppProvider = ({ children }) => {
         try {
             const response = await axios.get(todosUrl)
             const data =  response.data.slice(0,4)
-           dispatch({type : FETCH_TODOS_SUCCESS ,  payload : data})
-            dispatch({type : COUNT_TODO})
+            dispatch({type : FETCH_TODOS_SUCCESS ,  payload : data})
         } catch (error) {
             console.log(error);
         }
@@ -31,11 +30,21 @@ const AppProvider = ({ children }) => {
 
   },[])
   
+  useEffect(() => {
+    dispatch({type : COUNT_TODO})
+  },[state.todoList])
 
 
-  const addTodo = (e) => {
-    e.preventDefault()
-    dispatch({type : ADD_TODO})
+  const addTodo = (newTodoText) => {
+    if(newTodoText){
+
+      const newTodo = {
+        id: new Date().getTime(),
+        text : newTodoText,
+        completed : false
+      }
+      dispatch({type : ADD_TODO, payload : newTodo})
+    }
   }
 
 

@@ -11,7 +11,7 @@ import { ADD_TODO, COUNT_TODO, FETCH_TODOS_SUCCESS } from "./action"
         case ADD_TODO : 
             return {
                 ...state,
-                todoList : []
+                todoList : [...state.todoList, payload]
             }
         case COUNT_TODO : 
             return {
