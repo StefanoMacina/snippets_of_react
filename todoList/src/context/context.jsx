@@ -1,74 +1,76 @@
 import { createContext, useContext, useEffect, useReducer } from "react";
-import reducer from './reducer'
+import reducer from "./reducer";
 import axios from "axios";
-import { ADD_TODO, COUNT_COMPLETED_TODOS, COUNT_TODO, FETCH_TODOS_SUCCESS } from "./action";
+import {
+  ADD_TODO,
+  TOGGLE_TODO_STATUS,
+  COUNT_TODO,
+  FETCH_TODOS_SUCCESS,
+} from "./action";
 
-const todosUrl = 'https://jsonplaceholder.typicode.com/todos'
+const todosUrl = "https://jsonplaceholder.typicode.com/todos";
 
 const AppContext = createContext();
 
 const initialState = {
   todoList: [],
-  todoCount : 0,
-  completedTodos : [],
-  uncompletedTodos : []  
+  todoCount: 0,
+  completedTodos: [],
+  uncompletedTodos: [],
 };
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get(todosUrl);
+        const data = await response.data.slice(0, 5);
+        // dispatch({type : FETCH_TODOS_SUCCESS ,  payload : data})
+        const completed = await data.filter((el) => el.completed);
+        const uncompleted = await data.filter((el) => !el.completed);
+        dispatch({
+          type: FETCH_TODOS_SUCCESS,
+          payload: { completed, uncompleted },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
-    (async() => {
-        try {
-            const response = await axios.get(todosUrl)
-            const data = await response.data.slice(0,5)
-            // dispatch({type : FETCH_TODOS_SUCCESS ,  payload : data})
-            const completed = await data.filter((el) => el.completed)
-            const uncompleted = await data.filter((el) => !el.completed)
-            dispatch({type : FETCH_TODOS_SUCCESS, payload : {completed, uncompleted}})
-            
-        } catch (error) {
-            console.log(error);
-        }
-    })()
-  },[])
-  
   useEffect(() => {
-    dispatch({type : COUNT_TODO})
-  },[state.todoList])
-
+    dispatch({ type: COUNT_TODO });
+  }, [state.todoList]);
 
   const addTodo = (newTodoText) => {
-    if(newTodoText){
-
+    if (newTodoText) {
       const newTodo = {
         id: new Date().getTime(),
-        title : newTodoText,
-        completed : false
-      }
-
-      dispatch({type : ADD_TODO, payload : newTodo})
+        title: newTodoText,
+        completed: false,
+      };
+      dispatch({ type: ADD_TODO, payload: newTodo });
     }
-  }
+  };
 
+  const toggleTodoStatus = (todoId, isCompleted) => {
+    dispatch({ type: TOGGLE_TODO_STATUS, payload: { todoId, isCompleted } });
+  };
 
-  
-
-
-  return <AppContext.Provider value={{
-    ...state,
-    
-    addTodo
-    }}>
-        {children}
-    </AppContext.Provider>;
+  return (
+    <AppContext.Provider
+      value={{
+        ...state,
+        toggleTodoStatus,
+        addTodo,
+      }}
+    >
+      {children}
+    </AppContext.Provider>
+  );
 };
-
-
-
-
-
 
 const useGlobalContext = () => {
   return useContext(AppContext);
