@@ -3,28 +3,24 @@ import { ADD_TODO, COUNT_COMPLETED_TODOS, COUNT_TODO, FETCH_TODOS_SUCCESS } from
  const reducer = (state, {type, payload}) => {
     switch (type){
         case FETCH_TODOS_SUCCESS :
-            
+            const {completed, uncompleted} = payload
             return {
                 ...state,
-                todoList : payload
+                todoList : [...completed, ...uncompleted] ,
+                completedTodos : completed,
+                uncompletedTodos : uncompleted
             }
-        case ADD_TODO : 
-            return {
-                ...state,
-                todoList : [...state.todoList, payload]
-            }
-        case COUNT_TODO : 
+            case COUNT_TODO : 
             return {
                 ...state,
                 todoCount : state.todoList.length
             }
-        case COUNT_COMPLETED_TODOS :
-            return {
-                ...state,
-                completedTodos : [...state.completedTodos, payload]
-
-            }
-    }
+            case ADD_TODO : 
+                return {
+                    ...state,
+                    todoList : [...state.todoList, payload]
+                }
+        }
     return state
 }
 export default reducer

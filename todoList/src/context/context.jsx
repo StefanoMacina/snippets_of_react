@@ -10,9 +10,9 @@ const AppContext = createContext();
 const initialState = {
   todoList: [],
   todoCount : 0,
-  
+  completedTodos : [],
+  uncompletedTodos : []  
 };
-
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -22,8 +22,11 @@ const AppProvider = ({ children }) => {
     (async() => {
         try {
             const response = await axios.get(todosUrl)
-            const data =  response.data.slice(0,4)
-            dispatch({type : FETCH_TODOS_SUCCESS ,  payload : data})
+            const data = await response.data.slice(0,5)
+            // dispatch({type : FETCH_TODOS_SUCCESS ,  payload : data})
+            const completed = await data.filter((el) => el.completed)
+            const uncompleted = await data.filter((el) => !el.completed)
+            dispatch({type : FETCH_TODOS_SUCCESS, payload : {completed, uncompleted}})
             
         } catch (error) {
             console.log(error);

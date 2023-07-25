@@ -3,7 +3,8 @@ import Todo from "./Todo";
 import { useGlobalContext } from "../context/context";
 
 const List = () => {
-  const { todoList } = useGlobalContext();
+  const { todoList, completedTodos, uncompletedTodos } = useGlobalContext();
+  
 
   return (
     <section className="bg-slate-200 min-h-screen ">
