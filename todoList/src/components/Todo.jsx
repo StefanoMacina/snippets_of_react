@@ -4,11 +4,16 @@ import { FaRegCircle, FaCheckCircle } from "react-icons/fa";
 import { useGlobalContext } from "../context/context";
 
 const Todo = ({ id, title, completed }) => {
-  const { toggleTodoStatus } = useGlobalContext();
+  const { toggleTodoStatus , deleteTodo, todoList} = useGlobalContext();
 
   const handleCompleted = () => {
     toggleTodoStatus(id, !completed);
   };
+
+  const handleDeleteTodo = () => {
+    console.log(todoList);
+    deleteTodo(id)
+  }
 
   return (
     <section className="rounded-full shadow-md shadow-slate-400 p-2 bg-white">
@@ -19,9 +24,9 @@ const Todo = ({ id, title, completed }) => {
           </button>
           <p>{title}</p>
         </div>
-        <div className="p-2 text-2xl text-red-600 active:scale-110">
+        <button onClick={handleDeleteTodo} className="p-2 text-2xl text-red-600 active:scale-110">
           <TiDelete />
-        </div>
+        </button>
       </div>
     </section>
   );

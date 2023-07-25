@@ -6,6 +6,7 @@ import {
   TOGGLE_TODO_STATUS,
   COUNT_TODO,
   FETCH_TODOS_SUCCESS,
+  DELETE_TODO,
 } from "./action";
 
 const todosUrl = "https://jsonplaceholder.typicode.com/todos";
@@ -59,11 +60,16 @@ const AppProvider = ({ children }) => {
     dispatch({ type: TOGGLE_TODO_STATUS, payload: { todoId, isCompleted } });
   };
 
+  const deleteTodo = (todoId) => {
+    dispatch({type : DELETE_TODO, payload : todoId})
+  }
+
   return (
     <AppContext.Provider
       value={{
         ...state,
         toggleTodoStatus,
+        deleteTodo,
         addTodo,
       }}
     >
