@@ -1,6 +1,7 @@
 import React from "react";
 import Todo from "./Todo";
 import { useGlobalContext } from "../context/context";
+import ManageBtns from "./ManageBtns";
 
 const List = () => {
   const { todoList } = useGlobalContext();
@@ -18,6 +19,7 @@ const List = () => {
           }
         })}
       </ul>
+        <ManageBtns />
     </section>
   );
 };

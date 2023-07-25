@@ -1,6 +1,7 @@
 import {
   ADD_TODO,
   COUNT_TODO,
+  DELETE_ALL,
   DELETE_TODO,
   FETCH_TODOS_SUCCESS,
   TOGGLE_TODO_STATUS,
@@ -43,6 +44,13 @@ const reducer = (state, { type, payload }) => {
             ...state,
             todoList : state.todoList.filter((el) => el.id !== payload),
             completedTodos : state.completedTodos.filter(el  => el.id !== payload)
+        }
+    case DELETE_ALL :
+        return {
+            ...state,
+            completedTodos : [],
+            uncompletedTodos : [],
+            todoList : []
         }
   }
   return state;
