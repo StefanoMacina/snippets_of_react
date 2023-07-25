@@ -33,6 +33,7 @@ const AddTodo = () => {
             onClick={(e) => {
               e.preventDefault();
               addTodo(newTodo);
+              setNewTodo('')
             }}
             className="bg-orange-500 rounded-full w-1/4 h-7 text-xs text-white font-semibold active:scale-110 active:shadow-xl"
           >
